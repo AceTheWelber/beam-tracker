@@ -7,7 +7,7 @@ function loadBeams() {
     let dropdown = document.getElementById("beam");
     dropdown.innerHTML = "";
 
-    beamLibrary.forEach((beam, index) => {
+    beamLibrary.forEach((beam) => {
         let option = document.createElement("option");
         option.value = beam.rate;
         option.text = beam.name + " - " + beam.rate;
@@ -21,6 +21,7 @@ function addBeam() {
     let rate = Number(prompt("Enter piecework rate:"));
 
     if(name && rate) {
+
         beamLibrary.push({
             name: name,
             rate: rate
@@ -65,6 +66,94 @@ function calculate() {
 
     document.getElementById("person").innerHTML =
         (hours / crew).toFixed(4);
+
+    window.currentJob = {
+        job: document.getElementById("job").value,
+        beam: document.getElementById("beam").options[
+            document.getElementById("beam").selectedIndex
+        ].text,
+        qty: qty,
+        hours: hours,
+        crew: crew,
+        date: new Date().toISOString()
+    };
+}
+
+
+function saveJob() {
+
+    if(!window.currentJob){
+        alert("Calculate the job first.");
+        return;
+    }
+
+    let history = JSON.parse(localStorage.getItem("history")) || [];
+
+    history.push(window.currentJob);
+
+    // Keep only last 7 days
+    let cutoff = new Date();
+    cutoff.setDate(cutoff.getDate() - 7);
+
+    history = history.filter(job =>
+        new Date(job.date) >= cutoff
+    );
+
+
+    localStorage.setItem(
+        "history",
+        JSON.stringify(history)
+    );
+
+    alert("Job saved!");
+}
+
+
+function showHistory(){
+
+    let history = JSON.parse(localStorage.getItem("history")) || [];
+
+    if(history.length === 0){
+        alert("No jobs saved.");
+        return;
+    }
+
+    let output = "Weekly History\n\n";
+    let totalHours = 0;
+    let totalBeams = 0;
+
+
+    history.forEach(job => {
+
+        output +=
+        `${new Date(job.date).toLocaleDateString()}
+Job: ${job.job}
+${job.beam}
+Beams: ${job.qty}
+Hours: ${job.hours.toFixed(4)}
+
+`;
+
+        totalHours += job.hours;
+        totalBeams += job.qty;
+
+    });
+
+
+    output +=
+    `TOTAL BEAMS: ${totalBeams}
+TOTAL HOURS: ${totalHours.toFixed(4)}`;
+
+
+    alert(output);
+}
+
+
+function clearHistory(){
+
+    localStorage.removeItem("history");
+
+    alert("History deleted.");
 }
 
 
