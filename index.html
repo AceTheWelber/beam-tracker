@@ -12,62 +12,77 @@
 
 <h1>🔩 Beam Tracker</h1>
 
-<lab
+<h2>Beam Library</h2>
+
+<button onclick="addBeam()">+ Add Beam Type</button>
+
+
+<h2>Add Production</h2>
 
 <label>Beam Type</label>
-<select id="beam">
-<option value="0.0315">410-96</option>
-<option value="0.0304">300-96</option>
-</select>
+<select id="beam"></select>
 
 <label>Number of Beams</label>
 <input id="qty" type="number" value="0">
 
+
 <label>Crew Size</label>
 <input id="crew" type="number" value="2">
 
-<h2>Add Ons</h2>
+
+<h3>Add Ons</h3>
 
 <label>
-<input type="checkbox" id="setup" value="0.42">
+<input type="checkbox" id="setup">
 Setup (+0.4200)
 </label>
 
 <label>
-<input type="checkbox" id="wire" value="0.2298">
+<input type="checkbox" id="wire">
 Wire Change (+0.2298)
 </label>
 
 <label>
-<input type="checkbox" id="pallet" value="0.4098">
+<input type="checkbox" id="pallet">
 Pallet Stop Setup (+0.4098)
 </label>
 
-<button onclick="calculate()">Calculate</button>
 
-<button onclick="saveJob()">Save Job</button>
+<button onclick="addEntry()">Add To Day</button>
+
+
+<h2>Today's Entries</h2>
+
+<div id="entries"></div>
+
+
+<div class="result">
+
+<h2>Totals</h2>
+
+<p>Total Beams</p>
+<h2 id="totalBeams">0</h2>
+
+<p>Total Piecework Hours</p>
+<h2 id="hours">0</h2>
+
+<p>Your Hours</p>
+<h2 id="person">0</h2>
+
+</div>
+
+
+<button onclick="saveDay()">Save Day</button>
 
 <button onclick="showHistory()">Weekly History</button>
 
 <button onclick="clearHistory()">Clear History</button>
 
-<div class="result">
-
-<h2>Results</h2>
-
-<p>Total Piecework Hours:</p>
-<h2 id="hours">0</h2>
-
-<p>Hours Per Person:</p>
-<h2 id="person">0</h2>
 
 </div>
 
-</div>
 
 <script src="script.js"></script>
 
 </body>
 </html>
-
-<button onclick="addBeam()">+ Add Beam To Library</button>
