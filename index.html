@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Beam Tracker</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>🔩 Beam Tracker</h1>
+
+<label>Job Number</label>
+<input id="job" placeholder="Example: 410">
+
+<label>Beam Type</label>
+<select id="beam">
+<option value="0.0315">410-96</option>
+<option value="0.0304">300-96</option>
+</select>
+
+<label>Number of Beams</label>
+<input id="qty" type="number" value="0">
+
+<label>Crew Size</label>
+<input id="crew" type="number" value="2">
+
+<button onclick="calculate()">Calculate</button>
+
+<div class="result">
+
+<h2>Results</h2>
+
+<p>Total Piecework Hours:</p>
+<h2 id="hours">0</h2>
+
+<p>Hours Per Person:</p>
+<h2 id="person">0</h2>
+
+</div>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
