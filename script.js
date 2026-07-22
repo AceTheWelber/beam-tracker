@@ -338,6 +338,34 @@ function clearHistory(){
 
 }
 
+function deleteEntry(index){
 
+    todayEntries.splice(index,1);
+
+    updateTotals();
+
+}
+
+
+
+function editEntry(index){
+
+    let newQty = prompt(
+        "Change beam quantity:",
+        todayEntries[index].qty
+    );
+
+
+    if(newQty){
+
+        todayEntries[index].qty =
+        Number(newQty);
+
+
+        updateTotals();
+
+    }
+
+}
 
 loadBeams();
