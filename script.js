@@ -145,33 +145,42 @@ function updateTotals(){
     box.innerHTML = "";
 
 
-    todayEntries.forEach(entry => {
+    todayEntries.forEach((entry, index) => {
 
 
-        totalBeams += entry.qty;
-        totalHours += entry.hours;
+    totalBeams += entry.qty;
+    totalHours += entry.hours;
 
 
-        box.innerHTML += `
+    box.innerHTML += `
 
-        <div class="result">
+    <div class="result">
 
-        ${entry.beam}<br>
+    ${entry.beam}<br>
 
-Beams: ${entry.qty}<br>
+    Beams: ${entry.qty}<br>
 
-Hours: ${entry.hours.toFixed(4)}<br>
+    Hours: ${entry.hours.toFixed(4)}<br>
 
-Add-ons:
+    Add-ons:
+    ${entry.addons.join(", ") || "None"}
 
-${entry.addons.join(", ") || "None"}
+    <br><br>
 
-<br><br>
+    <button onclick="editEntry(${index})">
+    Edit
+    </button>
 
-<button onclick="editEntry(${index})">Edit</button>
+    <button onclick="deleteEntry(${index})">
+    Delete
+    </button>
 
-<button onclick="deleteEntry(${index})">Delete</button>
+    </div>
 
+    `;
+
+
+});
         </div>
 
         `;
