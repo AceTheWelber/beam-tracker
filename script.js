@@ -68,8 +68,8 @@ function calculate() {
         (hours / crew).toFixed(4);
 
     window.currentJob = {
-        job: document.getElementById("job").value,
-        beam: document.getElementById("beam").options[
+        
+    beam: document.getElementById("beam").options[
             document.getElementById("beam").selectedIndex
         ].text,
         qty: qty,
