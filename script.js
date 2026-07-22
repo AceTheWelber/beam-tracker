@@ -158,12 +158,19 @@ function updateTotals(){
 
         ${entry.beam}<br>
 
-        Beams: ${entry.qty}<br>
+Beams: ${entry.qty}<br>
 
-        Hours: ${entry.hours.toFixed(4)}<br>
+Hours: ${entry.hours.toFixed(4)}<br>
 
-        Add-ons:
-        ${entry.addons.join(", ")}
+Add-ons:
+
+${entry.addons.join(", ") || "None"}
+
+<br><br>
+
+<button onclick="editEntry(${index})">Edit</button>
+
+<button onclick="deleteEntry(${index})">Delete</button>
 
         </div>
 
